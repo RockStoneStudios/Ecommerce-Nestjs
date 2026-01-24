@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15.2
+    environment:
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_USER: omar
+      POSTGRES_DB: ecommerce
+
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
