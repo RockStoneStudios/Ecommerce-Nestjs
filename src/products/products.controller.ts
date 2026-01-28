@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ClassSerializerInterceptor } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ClassSerializerInterceptor, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/request/create-product.dto';
 import { UpdateProductDto } from './dto/request/update-product.dto';
@@ -11,6 +11,7 @@ import { User } from 'src/users/entities/user.entity';
 import { ProductResponseDto } from './dto/response/product-response.dto';
 import { Serialize } from 'src/utils/common/interceptors/serialize.interceptors';
 import { ProductUpdateResponseDto } from './dto/response/product-update-response.dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -24,8 +25,8 @@ export class ProductsController {
   }
 
   @Get()
-  async findAll() {
-    return await this.productsService.findAll();
+  async findAll(@Query() paginationDto : PaginationDto) {
+    return await this.productsService.findAll(paginationDto);
 
   }
  
@@ -45,7 +46,7 @@ export class ProductsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productsService.remove(+id);
+  async remove(@Param('id') id: number) {
+    return await  this.productsService.remove(id);
   }
 }

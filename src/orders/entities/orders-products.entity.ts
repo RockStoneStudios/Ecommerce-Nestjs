@@ -19,7 +19,7 @@ export class OrdersProducts{
     @ManyToOne(()=>Order , (order)=>order.products)
     order: Order;
 
-    @ManyToOne(()=> Product,(prod)=>prod.products, {cascade: true})
+    @ManyToOne(()=> Product,(prod)=>prod.orders, {cascade: true})
     product : Product;
 
 }

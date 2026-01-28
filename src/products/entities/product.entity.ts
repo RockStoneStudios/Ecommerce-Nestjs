@@ -43,5 +43,5 @@ export class Product {
     reviews : Review[];
 
     @OneToMany(()=> OrdersProducts,(op)=> op.product)
-    products: OrdersProducts[];
+    orders: OrdersProducts[];
 }

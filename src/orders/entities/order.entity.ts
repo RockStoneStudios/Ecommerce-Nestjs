@@ -27,12 +27,12 @@ export class Order {
     @ManyToOne(()=>User, (user)=>user.ordersUpdatedBy)
     updatedBy : User;
 
-    @OneToOne(()=> Shipping, (ship) => ship.order)
+    @OneToOne(()=> Shipping, (ship) => ship.order ,{cascade : true})
     @JoinColumn()
     shippingAddress : Shipping;
 
     @OneToMany(()=> OrdersProducts,(orderProduct)=> orderProduct.order,{cascade : true})
-    products : OrdersProducts;
+    products : OrdersProducts[];
 
     @ManyToOne(()=> User , (user)=> user.orders)
     user:User;

@@ -14,7 +14,7 @@ export class CreateShippingRequestDto {
   
     @IsNotEmpty({message : 'Address Can not be empty'})
     @IsString({message : 'Address format should be string'})
-    addres : string;
+    address : string;
 
     @IsNotEmpty({message : 'City Can not be empty'})
     @IsString({message : 'City format should be string'})
